@@ -5,15 +5,17 @@ body{
     background-color: #e7e7e7;
 }
 .canvas_frame{
-    width: 100%; height: 100%;
+    position: relative;
+    width: 100%; height: 900px;
 }
 
 .canvas{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
     display: block;
-    width:95%;
-    height: 80%;
-    margin: 0 auto;
-    margin-top: 2.5%;
+    width:1600px;
+    height:800px;
     background-color: white;
     border-radius: 30px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2) 
@@ -45,3 +47,6 @@ body{
 .controler_btn button:active{
     transform: scale(0.8);
 }
+
+.controler_btn #mode.brush svg.fill{display: none;}
+.controler_btn #mode.fill svg.brush{display: none;}
