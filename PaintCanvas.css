@@ -21,12 +21,16 @@ body{
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2) 
 }
 
+.controler_range{text-align: center;}
+
 .controler_btn,
 .controler_color{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 90px;
+    width: 100%;
+    /*width: 90px;
+    justify-content: space-between;*/
 }
 
 

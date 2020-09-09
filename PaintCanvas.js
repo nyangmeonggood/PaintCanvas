@@ -3,7 +3,8 @@ const canvas = document.getElementById("canvas"),
     colors_Array = Array.from(document.getElementsByClassName("jsColor")),
 //Array.from() -> object로 부터 array를 만듬
     brushSize = document.getElementById("controler_range"),
-    mode = document.getElementById("mode");
+    mode = document.getElementById("mode"),
+    saveBtn = document.getElementById("save")
 
 const CANVAS_SIZE = [1600,800]
 
@@ -19,7 +20,7 @@ ctx.fillRect(0, 0, CANVAS_SIZE[0], CANVAS_SIZE[1])
 
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
-ctx.fillStyle = INITIAL_COLOR
+ctx.fillStyle = INITIAL_COLOR;
 
 let painting = false;
 let filling = false;
@@ -53,10 +54,12 @@ function onMouseMove(e){
 function changeColor(event){
     var color = event.target.style.backgroundColor
     var brushIcon = document.getElementById("brushPoint")
+    var fillIcon = document.getElementById("bucket")
     
     ctx.fillStyle = color
     ctx.strokeStyle = color
     brushIcon.style.fill = color
+    fillIcon.style.fill = color
 }
 
 colors_Array.forEach(color => color.addEventListener("click",changeColor))
@@ -91,10 +94,28 @@ function fillMode(){
     }
 }
 
+function saveImage(){
+    const saveImage = canvas.toDataURL("img/png");
+    const saveLink = document.createElement("a");
+    saveLink.href = saveImage;
+    saveLink.download = "Dda-ran";
+    saveLink.click();
+}
+
+if(saveBtn){
+    saveBtn.addEventListener("click", saveImage)
+}
+
+function mouseRightClick(e){
+    e.preventDefault()
+}
+
 if(canvas){
     canvas.addEventListener("mousemove", onMouseMove)
     canvas.addEventListener("mousedown", startPainting)
     canvas.addEventListener("mouseup", stopPainting)
     canvas.addEventListener("mouseleave", stopPainting)
     canvas.addEventListener("click", fillMode)
+
+    window.addEventListener("contextmenu",mouseRightClick)
 }
